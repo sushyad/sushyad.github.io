@@ -5,14 +5,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | Hexo</title>
-  <meta name="author" content="John Doe">
+  <title>Archives: 2014 | sushyad&#39;s journal</title>
+  <meta name="author" content="Susheel Yadav">
+  
+  <meta name="description" content="My jounal">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Hexo"/>
+  <meta property="og:site_name" content="sushyad&#39;s journal"/>
 
   
     <meta property="og:image" content="undefined"/>
@@ -28,7 +30,7 @@
     <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
     
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="sushyad&#39;s journal" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   
   <style type="text/css">
@@ -76,7 +78,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
 <body>
   <header id="header" class="inner"><div class="padding">
 	<div class="alignleft logo">
-	  <h1><a href="/">Hexo</a></h1>
+	  <h1><a href="/">sushyad&#39;s journal</a></h1>
 	</div>
 	<nav id="main-nav" class="alignright">
 		<input type="checkbox" id="toggle" />
@@ -131,7 +133,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
                 <span class="heading-span">By: </span>
 
                 
-                  <a href="/">John Doe</a>
+                  <a href="/">Susheel Yadav</a>
                 
 
               </li>
@@ -145,15 +147,16 @@ body{ -webkit-animation: bugfix infinite 1s; }
       <div class="entry">
         
           
-            <p>To enable wifi:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cat /etc/network/interfaces</div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">auto wlan0</div><div class="line">iface wlan0 inet dhcp</div><div class="line">        wpa-ssid <span class="string">"ssid_here"</span></div><div class="line">        wpa-psk <span class="string">"password_here"</span></div><div class="line"></div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf</span></div><div class="line"></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure>
+            <h2 id="Fixing_Raspberry_Pi_Model_B+_WiFi_disconnect_issues">Fixing Raspberry Pi Model B+ WiFi disconnect issues</h2>
+<h3 id="To_enable_wifi:">To enable wifi:</h3>
+<p>cat /etc/network/interfaces</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">auto wlan0</div><div class="line">iface wlan0 inet dhcp</div><div class="line">        wpa-ssid <span class="string">"ssid_here"</span></div><div class="line">        wpa-psk <span class="string">"password_here"</span></div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf</span></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure>
 
+<p>cat /etc/wpa_supplicant/wpa_supplicant.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</div><div class="line">update_config=<span class="number">1</span></div></pre></td></tr></table></figure>
 
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</div><div class="line">update_config=<span class="number">1</span></div></pre></td></tr></table></figure>
-
-<p>To enable wifi reconnect:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/ifplugd/action.d/</div><div class="line"><span class="built_in">sudo</span> mv ifupdown ifupdown.original</div><div class="line"><span class="built_in">sudo</span> cp /etc/wpa_supplicant/ifupdown.sh ./ifupdown</div><div class="line"><span class="built_in">sudo</span> reboot</div></pre></td></tr></table></figure>
+<h3 id="To_enable_wifi_reconnect:">To enable wifi reconnect:</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/ifplugd/action.d/</div><div class="line"><span class="built_in">sudo</span> mv ifupdown ifupdown.original</div><div class="line"><span class="built_in">sudo</span> cp /etc/wpa_supplicant/ifupdown.sh ./ifupdown</div><div class="line"><span class="built_in">sudo</span> reboot</div></pre></td></tr></table></figure>
 
 
           
@@ -196,7 +199,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
                 <span class="heading-span">By: </span>
 
                 
-                  <a href="/">John Doe</a>
+                  <a href="/">Susheel Yadav</a>
                 
 
               </li>
@@ -262,7 +265,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
 	  <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
+    <input type="hidden" name="q" value="site:yapiz.org">
   </form>
 </div>
 	
@@ -293,7 +296,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
   <footer id="footer" class="inner"><div class="padding">
 	<div class="alignleft">
 	  
-	  &copy; 2014 John Doe
+	  &copy; 2014 Susheel Yadav
 	  
 	  Powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
 	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
