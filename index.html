@@ -114,7 +114,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
           <div class="icon"></div>
             
     
-      <h1 class="title transition"><a href="/2014/12/17/New-Post/">New Post</a></h1>
+      <h1 class="title transition"><a href="/2014/12/17/New-Post/">Raspberry Pi Wifi</a></h1>
     
   
           <ul>
@@ -141,7 +141,17 @@ body{ -webkit-animation: bugfix infinite 1s; }
       <div class="entry">
         
           
-            
+            <p>To enable wifi:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cat /etc/network/interfaces</div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">auto wlan0</div><div class="line">iface wlan0 inet dhcp</div><div class="line">        wpa-ssid <span class="string">"ssid_here"</span></div><div class="line">        wpa-psk <span class="string">"password_here"</span></div><div class="line"></div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf</span></div><div class="line"></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</div><div class="line">update_config=<span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>To enable wifi reconnect:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/ifplugd/action.d/</div><div class="line"><span class="built_in">sudo</span> mv ifupdown ifupdown.original</div><div class="line"><span class="built_in">sudo</span> cp /etc/wpa_supplicant/ifupdown.sh ./ifupdown</div><div class="line"><span class="built_in">sudo</span> reboot</div></pre></td></tr></table></figure>
+
+
           
         
       </div>
@@ -253,7 +263,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
   <ul class="entry">
     
       <li>
-        <a href="/2014/12/17/New-Post/">New Post</a>
+        <a href="/2014/12/17/New-Post/">Raspberry Pi Wifi</a>
       </li>
     
       <li>

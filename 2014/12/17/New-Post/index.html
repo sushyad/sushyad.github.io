@@ -5,13 +5,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>New Post | Hexo</title>
+  <title>Raspberry Pi Wifi | Hexo</title>
   <meta name="author" content="John Doe">
+  
+  <meta name="description" content="To enable wifi:
+12345678910111213cat /etc/network/interfacesauto loiface lo inet loopbackiface eth0 inet dhcpallow-hotplug wlan0auto wlan0iface wlan0 ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="New Post"/>
+  <meta property="og:title" content="Raspberry Pi Wifi"/>
   <meta property="og:site_name" content="Hexo"/>
 
   
@@ -97,7 +100,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
   	<div class="inner">
       <div class="padding">
     		
-          <h1>New Post</h1>
+          <h1>Raspberry Pi Wifi</h1>
           <ul>
             <li>
               <span class="heading-span">Posted on: </span>
@@ -131,7 +134,17 @@ body{ -webkit-animation: bugfix infinite 1s; }
       
       <div class="entry">
         
-          
+          <p>To enable wifi:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cat /etc/network/interfaces</div><div class="line">auto lo</div><div class="line">iface lo inet loopback</div><div class="line">iface eth0 inet dhcp</div><div class="line">allow-hotplug wlan0</div><div class="line">auto wlan0</div><div class="line">iface wlan0 inet dhcp</div><div class="line">        wpa-ssid <span class="string">"ssid_here"</span></div><div class="line">        wpa-psk <span class="string">"password_here"</span></div><div class="line"></div><div class="line"><span class="comment">#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf</span></div><div class="line"></div><div class="line">iface default inet dhcp</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/wpa_supplicant/wpa_supplicant.conf</div><div class="line"></div><div class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</div><div class="line">update_config=<span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p>To enable wifi reconnect:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/ifplugd/action.d/</div><div class="line"><span class="built_in">sudo</span> mv ifupdown ifupdown.original</div><div class="line"><span class="built_in">sudo</span> cp /etc/wpa_supplicant/ifupdown.sh ./ifupdown</div><div class="line"><span class="built_in">sudo</span> reboot</div></pre></td></tr></table></figure>
+
+
         
       </div>
       <footer>
@@ -206,7 +219,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
   <ul class="entry">
     
       <li>
-        <a href="/2014/12/17/New-Post/">New Post</a>
+        <a href="/2014/12/17/New-Post/">Raspberry Pi Wifi</a>
       </li>
     
       <li>
